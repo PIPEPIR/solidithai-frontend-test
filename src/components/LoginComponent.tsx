@@ -10,7 +10,14 @@ import {
   Tooltip,
 } from "antd";
 import Link from "antd/es/typography/Link";
-import { useEffect, useState } from "react";
+import {
+  ContextType,
+  ReactElement,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import { LoginPageContext, LoginPageContextType } from "../pages/LoginPage";
 
 const users = [
   {
@@ -19,20 +26,29 @@ const users = [
   },
 ];
 
+interface PersonName {
+  firstName: string;
+  lastName: string;
+}
+
 interface User {
   username: string;
   password: string;
 }
 
-const LoginComponent: React.FC = () => {
+export interface UserData extends User {
+  name: PersonName;
+  email: string;
+}
+
+const LoginComponent = (): ReactElement => {
+  const { setOpenRegister } = useContext(
+    LoginPageContext
+  ) as LoginPageContextType;
   const [isFilled, setIsFilled] = useState<boolean>(false);
   const [user, setUser] = useState<User>({ username: "", password: "" });
 
-  useEffect(() => {}, [isFilled]);
-
   useEffect(() => {
-    console.log(user, isFilled);
-
     if (user.password && user.username) {
       setIsFilled(true);
     } else {
@@ -43,12 +59,7 @@ const LoginComponent: React.FC = () => {
   return (
     <Card>
       <Form layout="vertical">
-        <Form.Item
-          label="Username"
-          name="username"
-          validateFirst={true}
-          required
-        >
+        <Form.Item label="Username" name="username">
           <Input
             prefix={<UserOutlined />}
             placeholder="Username"
@@ -57,7 +68,7 @@ const LoginComponent: React.FC = () => {
             onChange={(e) => setUser({ ...user, username: e.target.value })}
           />
         </Form.Item>
-        <Form.Item label="Password" name="password" required>
+        <Form.Item label="Password" name="password">
           <Input.Password
             prefix={<LockOutlined />}
             placeholder="Password"
@@ -79,7 +90,7 @@ const LoginComponent: React.FC = () => {
       <Divider />
       <Typography.Text>
         Do not have an account ?{" "}
-        <Link onClick={() => alert("not implemented")}>Create account</Link>
+        <Link onClick={() => setOpenRegister(true)}>Register</Link>
       </Typography.Text>
     </Card>
   );
