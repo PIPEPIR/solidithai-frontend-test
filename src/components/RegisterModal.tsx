@@ -27,13 +27,15 @@ export const RegisterModal = ({ open }: RegisterModalProps) => {
   useEffect(() => {
     if (
       userData.email &&
-      userData.name.firstName &&
-      userData.name.lastName &&
+      userData.name?.firstName &&
+      userData.name?.lastName &&
       userData.password &&
       userData.username
     ) {
       setIsFilled(true);
-    } else [setIsFilled(false)];
+    } else {
+      setIsFilled(false);
+    }
   }, [userData]);
 
   const onRegister = () => {
@@ -47,6 +49,7 @@ export const RegisterModal = ({ open }: RegisterModalProps) => {
       return alert("The username is taken");
     }
     users?.push(userData);
+    /* imitate the way key users store in database instead, store it in localStorage using key "users" */
     localStorage.setItem("users", JSON.stringify(users));
     setOpenRegister(false);
   };

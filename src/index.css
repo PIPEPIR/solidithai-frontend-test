@@ -37,3 +37,8 @@ h6 {
   place-items: center;
   justify-content: center;
 }
+@media screen and (max-width: 768px) {
+  .profile {
+    display: none;
+  }
+}
