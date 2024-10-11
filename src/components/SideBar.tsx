@@ -1,21 +1,17 @@
 import {
+  DashboardOutlined,
   HomeOutlined,
   LogoutOutlined,
-  UnorderedListOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Layout, Flex, Button, Typography, Menu, MenuProps } from "antd";
+import { Flex, Button, Typography, Menu, MenuProps, Tooltip } from "antd";
 import Sider from "antd/es/layout/Sider";
-import { ReactNode, useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserData } from "./LoginComponent";
 import { AppContext, AppContextType } from "../App";
 
-interface SideBarProps {
-  children: ReactNode;
-}
-
-const SideBar = ({ children }: SideBarProps) => {
+const SideBar = () => {
   const { setLoggedInUser, loggedInUser } = useContext(
     AppContext
   ) as AppContextType;
@@ -32,7 +28,7 @@ const SideBar = ({ children }: SideBarProps) => {
     },
     {
       key: "/dashboard",
-      icon: <UnorderedListOutlined />,
+      icon: <DashboardOutlined />,
       label: <Link to="/dashboard">Dashboard</Link>,
     },
     {
@@ -54,37 +50,42 @@ const SideBar = ({ children }: SideBarProps) => {
     setLoggedInUser(result);
   }, [setLoggedInUser]);
   return (
-    <Layout style={{ backgroundColor: "#242424" }} hasSider>
-      <Sider breakpoint="lg">
-        <Flex
-          style={{
-            backgroundColor: "white",
-            alignItems: "center",
-            gap: "0.5rem",
-            padding: "1rem",
-          }}
-          align="center"
-        >
-          {loggedInUser && (
-            <>
+    <Sider breakpoint="lg">
+      <Flex
+        style={{
+          backgroundColor: "white",
+          alignItems: "center",
+          gap: ".5rem",
+          padding: "1rem",
+        }}
+        align="center"
+        justify="center"
+      >
+        {loggedInUser && (
+          <>
+            <Tooltip
+              title={`${loggedInUser.name?.firstName} ${loggedInUser.name?.lastName}`}
+              placement={"right"}
+            >
               <Button shape="circle" icon={<UserOutlined />} size="large" />
-              <Flex vertical className="profile">
-                <Typography.Text>{`${loggedInUser?.name?.firstName} ${loggedInUser?.name?.lastName}`}</Typography.Text>
-                <span style={{ fontSize: "12px", color: "gray" }}>
-                  {loggedInUser?.email}
-                </span>
-              </Flex>
-            </>
-          )}
-        </Flex>
-        <Menu
-          items={item}
-          style={{ height: "100vh" }}
-          selectedKeys={[currentPath]}
-        />
-      </Sider>
-      {children}
-    </Layout>
+            </Tooltip>
+
+            <Flex vertical className="profile">
+              <Typography.Text>{`${loggedInUser?.name?.firstName} ${loggedInUser?.name?.lastName}`}</Typography.Text>
+              <span style={{ fontSize: "12px", color: "gray" }}>
+                {loggedInUser?.email}
+              </span>
+            </Flex>
+          </>
+        )}
+      </Flex>
+      <Menu
+        items={item}
+        style={{ height: "100vh" }}
+        selectedKeys={[currentPath]}
+        defaultSelectedKeys={["/home"]}
+      />
+    </Sider>
   );
 };
 
