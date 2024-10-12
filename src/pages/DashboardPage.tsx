@@ -68,11 +68,14 @@ const Dashboard = () => {
       onFilter: (value, r) => {
         return r.gender === value;
       },
+      ellipsis: true,
+      responsive: ["sm"],
     },
     {
       title: "Company",
       dataIndex: "company",
       key: "company",
+      ellipsis: true,
     },
 
     {
@@ -80,6 +83,7 @@ const Dashboard = () => {
       dataIndex: "phone",
       key: "phone",
       ellipsis: true,
+      responsive: ["sm"],
     },
     {
       title: "",

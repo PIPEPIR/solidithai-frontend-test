@@ -17,10 +17,14 @@ const SideBar = () => {
   const { setLoggedInUser, loggedInUser } = useContext(
     AppContext
   ) as AppContextType;
-
   const navigate = useNavigate();
   const location = useLocation();
   const currentPath = location.pathname;
+
+  const onLogOut = () => {
+    localStorage.removeItem("user");
+    navigate("/");
+  };
 
   const item: MenuProps["items"] = [
     {
@@ -39,11 +43,11 @@ const SideBar = () => {
       label: "Sign Out",
       danger: true,
       onClick: () => {
-        localStorage.removeItem("user");
-        navigate("/");
+        onLogOut();
       },
     },
   ];
+
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user") ?? "");
     const result = JSON.parse(localStorage.getItem("users") ?? "").find(
