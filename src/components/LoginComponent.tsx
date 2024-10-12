@@ -9,11 +9,12 @@ import {
   Flex,
   Tooltip,
 } from "antd";
-import Link from "antd/es/typography/Link";
 import { ReactElement, useContext, useEffect, useState } from "react";
 import { LoginPageContext, LoginPageContextType } from "../pages/LoginPage";
 import { AppContext, AppContextType } from "../App";
 import { useNavigate } from "react-router-dom";
+
+const { Link, Text } = Typography;
 
 interface PersonName {
   firstName: string;
@@ -139,10 +140,10 @@ const LoginComponent = (): ReactElement => {
         </Form.Item>
       </Form>
       <Divider />
-      <Typography.Text>
+      <Text>
         Do not have an account ?{" "}
         <Link onClick={() => setOpenRegister(true)}>Register</Link>
-      </Typography.Text>
+      </Text>
     </Card>
   );
 };

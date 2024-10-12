@@ -1,4 +1,4 @@
-import { Form, Input, Modal, Space, Tooltip, Typography } from "antd";
+import { Form, Input, Modal, Space, Typography } from "antd";
 import { useContext, useEffect, useState } from "react";
 import { LoginPageContext, LoginPageContextType } from "../pages/LoginPage";
 import { useForm, useWatch } from "antd/es/form/Form";
@@ -7,6 +7,8 @@ import { UserData } from "./LoginComponent";
 interface RegisterModalProps {
   open: boolean;
 }
+
+const { Text } = Typography;
 
 export const RegisterModal = ({ open }: RegisterModalProps) => {
   const { setOpenRegister } = useContext(
@@ -64,7 +66,7 @@ export const RegisterModal = ({ open }: RegisterModalProps) => {
     >
       <div style={{ padding: "1rem", marginTop: "2rem" }}>
         <Space direction="vertical" size={"middle"}>
-          <Typography.Text strong>Please Fill in the form</Typography.Text>
+          <Text strong>Please Fill in the form</Text>
           <Form
             form={form}
             onFinish={() => setOpenRegister(false)}

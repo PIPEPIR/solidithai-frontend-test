@@ -1,10 +1,10 @@
 import { createContext, ReactElement, useEffect, useState } from "react";
-import "./App.css";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import { UserData } from "./components/LoginComponent";
 import { Route, Routes } from "react-router-dom";
 import DashboardPage from "./pages/DashboardPage";
+import PersonDetailedPage from "./pages/PersonDetailedPage";
 
 export interface AppContextType {
   isLoggedIn: boolean;
@@ -37,6 +37,9 @@ function App(): ReactElement {
             <Route path="/" element={<LoginPage />} />
             <Route path="home" element={<HomePage />} />
             <Route path="dashboard" element={<DashboardPage />} />
+            <Route path="user">
+              <Route path=":id" element={<PersonDetailedPage />} />
+            </Route>
           </Routes>
         )}
       </AppContext.Provider>

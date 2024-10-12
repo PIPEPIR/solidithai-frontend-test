@@ -11,6 +11,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserData } from "./LoginComponent";
 import { AppContext, AppContextType } from "../App";
 
+const { Text } = Typography;
+
 const SideBar = () => {
   const { setLoggedInUser, loggedInUser } = useContext(
     AppContext
@@ -71,7 +73,7 @@ const SideBar = () => {
             </Tooltip>
 
             <Flex vertical className="profile">
-              <Typography.Text>{`${loggedInUser?.name?.firstName} ${loggedInUser?.name?.lastName}`}</Typography.Text>
+              <Text>{`${loggedInUser?.name?.firstName} ${loggedInUser?.name?.lastName}`}</Text>
               <span style={{ fontSize: "12px", color: "gray" }}>
                 {loggedInUser?.email}
               </span>
