@@ -1,50 +1,62 @@
-# React + TypeScript + Vite
+# User Dashboard Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This application is a React-based project using vite. Let's user authorized user to access, viewing, searhcing, and filtering active useres and user's name for information to mangae people listed in the table. Components are based-on Ant Design Components and using mock data from local.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. [Setup and Installation](#setup-and-installation)
+2. [Running the Project](#running-the-project)
+3. [Features](#Features)
 
-## Expanding the ESLint configuration
+## Setup and Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Follow these steps to set up the project locally:
 
-- Configure the top-level `parserOptions` property like this:
+1. **Clone the repository**:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+  git clone https://github.com/PIPEPIR/solidithai-frontend-test
+  cd solidithai-frontend-test
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. **Install dependencies**:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+  npm install
 ```
+
+## Running the Project
+
+1. Run Development Mode:
+
+```bash
+  npm run dev
+```
+
+## Features
+
+### a. Login Page
+
+- Ability to login by username and password:
+
+- Ability to handle error on login fail:
+
+- Ability to register new user:
+
+### b. Dashboard (Home) Page
+
+- Ability to only allow logged-in users to access:
+
+- Ability to display a simple welcome message:
+
+- Ability to list entries available (using mock data):
+
+- Ability to search and filter entries:
+
+- Ability to show detailed information:
+
+### c. Menu (Sidebar)
+
+- Ability to navigate througout the application
+
+- Ability to Sign out
